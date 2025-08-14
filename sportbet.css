@@ -1,0 +1,12 @@
+p{
+    color: rgb(14, 159, 14)
+    ;
+}
+
+.cor-paragrafo-classe{
+    color: rgb(247, 17, 17);
+}
+
+#cor-paragrafo-id{
+    color: rgb(128, 128, 128);
+}

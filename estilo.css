@@ -1,0 +1,12 @@
+p{
+    color: brown
+    ;
+}
+
+.cor-paragrafo-classe{
+    color: burlywood;
+}
+
+#cor-paragrafo-id{
+    color: deepskyblue;
+}
