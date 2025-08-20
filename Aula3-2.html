@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 3</title>
+</head>
+<body>
+    <div onmouseover="mostratexto()"
+    onmouseout="escondertexto()"
+    style="width: 100px;height: 50px;border: 1px solid blueviolet;"
+    >Passe o mouser aqui! 
+
+</div>
+    <div id="texto"></div>
+
+<script>
+    
+    function mostratexto() {
+        document.getElementById("texto").innerText =
+        "Mouse em cima da div"
+    }
+    
+
+    function escondertexto() {
+        document.getElementById("texto").innerText =
+        "Mouse saiu da div"
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+    <p onmouseover="mostraTexto()"
+    onmouseout="esconderTexto()">Passe o mouse aqui! </p>
+    <p id="mensagem"></p>
+
+    <script>
+    function mostraTexto() {
+        document.getElementById("mensagem").innerText =
+        "Esse é o evento onmouseover"
+    }
+    
+
+    function esconderTexto() {
+        document.getElementById("mensagem").innerText = "";
+    }
+
+    </script>-->
+    
+</body>
+</html>
