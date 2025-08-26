@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 5</title>
+</head>
+<body>
+    <from onsubmit="return validarFormulario()">
+        <input type="text" id="nome" placeholder=" Digite seu nome ... ">
+        <button type="submit">Enviar </button>
+    </from>
+
+<script>
+    function validarFormulario() {
+        const nome = document.getElementById("nome").value;
+        if (nome === "") {
+            alert("Por favor, preencha o nome. "); return false; // cancela o envio
+        }
+        alert("Formulário enviado com sucesso! ");
+        return true;
+    }
+</script>
+
+
+   <!--  Capturar senha HTML e contador de caracteres 
+    <h2>👻 Digite sua palavra/senha:</h2>
+    <input type="text" id="camposenha" placeholder="Digite aqui ...">
+    <p id="resultado">👉 Você digitou: </p>
+    <p id="contador"> 🔢 Contador de caracteres: </p>
+
+    <script>
+        const campo = document.getElementById("camposenha");
+        const resultado = document.getElementById("resultado");
+        const contador = document.getElementById("contador");
+
+        // Captura o valor digitado a cada tecla liberada
+        campo.addEventListener("keyup", function() {
+            let texto = campo.value; resultado.textContent = "👉 Você digitou: " + texto;
+            contador.textContent = "🔢 Contador de caracteres: " + texto.length;
+
+        });
+    </script>
+-->
+</body>
+</html>
