@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade Extra HTML</title>
+    <style>
+        button {
+        padding: 12px 25px;
+        margin: 8px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;   
+        box-shadow: 0 12px 14px rgba(0,0,0,0.2);
+    }
+    </style>
+</head>
+<body>
+
+    <h2> ESCOLHA UMA COR </h2>
+
+    <button onclick="mudarcor('red')">Vermelho</button>
+    <button onclick="mudarcor('green')">Verde</button>
+    <button onclick="mudarcor('gray')">Cinza</button>
+    <button onclick="mudarcor('white')">Reset</button>
+
+    <script>
+    function mudarcor(cor) {
+    document.body.style.backgroundColor = cor;
+    }
+</script>
+</body>
+</html>
