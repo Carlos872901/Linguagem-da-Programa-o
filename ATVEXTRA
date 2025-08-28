@@ -2,32 +2,47 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Atividade Extra HTML</title>
+    <title>MINI PAINEL DE COR</title>
     <style>
         button {
-        padding: 12px 25px;
-        margin: 8px;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;   
-        box-shadow: 0 12px 14px rgba(0,0,0,0.2);
-    }
+            padding: 12px 25px;
+            margin: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;   
+            box-shadow: 0 20px 22px rgba(0,0,0,0.2);
+            
+        }
+
     </style>
 </head>
 <body>
 
-    <h2> ESCOLHA UMA COR </h2>
-
-    <button onclick="mudarcor('red')">Vermelho</button>
-    <button onclick="mudarcor('green')">Verde</button>
-    <button onclick="mudarcor('gray')">Cinza</button>
-    <button onclick="mudarcor('white')">Reset</button>
+    <button id="cinza">CINZA</button>
+    <button id="verde">VERDE</button>
+    <button id="vermelho">VERMELHO</button>
+    <button id="branco">RESET</button>
 
     <script>
-    function mudarcor(cor) {
-    document.body.style.backgroundColor = cor;
-    }
-</script>
+        const cinza = document.getElementById('cinza');
+        const verde = document.getElementById('verde');
+        const vermelho = document.getElementById('vermelho');
+        const branco = document.getElementById('branco')
+
+        // Eventos de clique
+        cinza.addEventListener('click', () => document.body.style.backgroundColor = 'gray');
+        verde.addEventListener('click', () => document.body.style.backgroundColor = 'green');
+        vermelho.addEventListener('click', () => document.body.style.backgroundColor = 'red');
+        branco.addEventListener('click', () => document.body.style.backgroundColor = 'white');
+
+        // Efeitos visuais ao passar o mouse
+        const botoes = [cinza, verde, vermelho];
+        botoes.forEach(botao => {
+            botao.addEventListener('mouseenter', () => botao.style.border = '2px solid black');
+            botao.addEventListener('mouseleave', () => botao.style.border = 'none');
+        });
+    </script>
 </body>
 </html>
+
