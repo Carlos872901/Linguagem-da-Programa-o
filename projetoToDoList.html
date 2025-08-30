@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>To-Do List Simples</title>
+<style>
+  /* Estilo geral da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px #00000050;
+}
+
+input {
+    padding: 12px;
+    font-size: 16px;
+    width: 250px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    padding: 12px 16px;
+    font-size: 16px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #2575fc;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #e6e6e6;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+li {
+    margin: 10px 0;
+    background-color: white;
+    color: #333;
+    padding: 14px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+li:hover {
+    background-color: #f1f1f1;
+    transform: translateX(4px);
+}
+</style>
+</head>
+<body>
+
+<h1>📃Minha Lista de Tarefas📃</h1>
+
+<!-- Campo para digitar a tarefa -->
+<input type="text" id="tarefa" placeholder="Digite uma tarefa">
+
+<!-- Botão para adicionar a tarefa -->
+<button onclick="adicionarTarefa()">Adicionar</button>
+
+<!-- Botão para limpar todas as tarefas -->
+<button onclick="limparTudo()">Limpar Tudo</button>
+
+<input type="text" id="filtro" placeholder="Filtrar tarefas">
+<button onclick="filtrarTarefas()">Filtrar</button>
+<button onclick="limparFiltro()">Mostrar Todas</button>
+
+<!-- Lista onde as tarefas vão aparecer -->
+<ul id="lista"></ul>
+
+<script>
+    const input = document.getElementById("tarefa");
+    const lista = document.getElementById("lista");
+
+    // ⬇️ Carrega as tarefas salvas ao abrir a página
+    window.onload = function () {
+    const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas")) || [];
+    tarefasSalvas.forEach(texto => {
+        criarItem(texto);
+    });
+    };
+    // Adiciona a função de aperta o enter para salvar
+    input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            adicionarTarefa();
+        }
+    });
+
+    function adicionarTarefa() {
+    const texto = input.value.trim();
+    if (texto === "") return;
+
+      criarItem(texto);             // mostra na tela
+      salvarTarefa(texto);          // salva no localStorage
+      input.value = "";             // limpa o campo
+    }
+
+    // ⬇️ Cria um item <li> com a tarefa e funcionalidade de clique
+    function criarItem(texto) {
+    const item = document.createElement("li");
+    item.textContent = texto;
+
+      // Quando clicar, remove da tela e do localStorage
+    item.onclick = function () {
+        lista.removeChild(item);
+        removerTarefa(texto);
+    };
+
+lista.appendChild(item);
+    }
+
+    // ⬇️ Salva a tarefa no localStorage
+    function salvarTarefa(texto) {
+    const tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+    tarefas.push(texto);
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    }
+
+    // ⬇️ Remove a tarefa do localStorage
+    function removerTarefa(texto) {
+    let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+    tarefas = tarefas.filter(tarefa => tarefa !== texto);
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    }
+    //Adiciona a função para limpar as tarefas salvas
+    function limparTudo() {
+        lista.innerHTML = "";
+        localStorage.removeItem("tarefas");
+    }
+
+    const filtroInput = document.getElementById("filtro");
+
+function filtrarTarefas() {
+    const filtroTexto = filtroInput.value.trim().toLowerCase();
+    const itens = lista.getElementsByTagName("li");
+
+    for (let item of itens) {
+        const textoItem = item.textContent.toLowerCase();
+        if (textoItem.includes(filtroTexto)) {
+            item.style.display = "";
+        } else {
+            item.style.display = "none";
+        }
+    }
+}
+
+function limparFiltro() {
+    filtroInput.value = "";
+    const itens = lista.getElementsByTagName("li");
+    for (let item of itens) {
+        item.style.display = "";
+    }
+}
+</script>
+</body>
+</html>
